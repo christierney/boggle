@@ -6,14 +6,14 @@ A web application that finds solutions for the game [Boggle](https://en.wikipedi
 
 Run with `./gradlew run`
 
-Open [http://localhost:8080/ping]() and you should get a "pong".
+Open http://localhost:8080/ping and you should get a "pong".
 
 Alternative port: `PORT=XXXX ./gradlew run`
 
-[http://localhost:8080/board]() is the solver interface; it will return a list of valid words.
+http://localhost:8080/board is the solver interface; it will return a list of valid words.
 
 Specify a board with a query parameter, `letters`:
-[http://localhost:8080/board?letters=abcdefghi](). The board is read left-to-right, top-to-bottom.
+http://localhost:8080/board?letters=abcdefghi. The board is read left-to-right, top-to-bottom.
 For example, the string `abcdefghi` corresponds to the board:
 
     | a | b | c |
@@ -26,7 +26,7 @@ converted to "qu" before solving.
 
 Output is a JSON list of valid words.
 
-A simple HTML UI is available at [http://localhost:8080/]
+A simple HTML UI is available at http://localhost:8080/
 
 ## Deployment
 
@@ -36,8 +36,8 @@ A simple HTML UI is available at [http://localhost:8080/]
 
 This is suitable for deploying to Heroku. The application has been deployed at:
 
-* JSON interface: [https://shrouded-island-28213.herokuapp.com/board?letters=abcdefghi]()
-* HTML interface: [https://shrouded-island-28213.herokuapp.com/]()
+* JSON interface: https://shrouded-island-28213.herokuapp.com/board?letters=abcdefghi
+* HTML interface: https://shrouded-island-28213.herokuapp.com/
 
 (This is a free Heroku application, so it may be asleep and a first request might take longer than
 usual to return.)
