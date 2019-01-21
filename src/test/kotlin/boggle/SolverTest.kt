@@ -4,9 +4,9 @@ import kotlin.test.*
 
 class SolverTest {
     val b = Board(listOf(
-            listOf('a', 'b', 'c'),
-            listOf('d', 'e', 'f'),
-            listOf('g', 'h', 'i')
+            listOf("a", "b", "c"),
+            listOf("d", "e", "f"),
+            listOf("g", "h", "qu")
     ))
 
     @Test
@@ -21,15 +21,15 @@ class SolverTest {
 
     @Test
     fun `letterAt returns the character at a given position`() {
-        assertEquals('a', b.letterAt(Cube(0,0)))
-        assertEquals('b', b.letterAt(Cube(0,1)))
-        assertEquals('c', b.letterAt(Cube(0,2)))
-        assertEquals('d', b.letterAt(Cube(1,0)))
-        assertEquals('e', b.letterAt(Cube(1,1)))
-        assertEquals('f', b.letterAt(Cube(1,2)))
-        assertEquals('g', b.letterAt(Cube(2,0)))
-        assertEquals('h', b.letterAt(Cube(2,1)))
-        assertEquals('i', b.letterAt(Cube(2,2)))
+        assertEquals("a", b.letterAt(Cube(0,0)))
+        assertEquals("b", b.letterAt(Cube(0,1)))
+        assertEquals("c", b.letterAt(Cube(0,2)))
+        assertEquals("d", b.letterAt(Cube(1,0)))
+        assertEquals("e", b.letterAt(Cube(1,1)))
+        assertEquals("f", b.letterAt(Cube(1,2)))
+        assertEquals("g", b.letterAt(Cube(2,0)))
+        assertEquals("h", b.letterAt(Cube(2,1)))
+        assertEquals("qu", b.letterAt(Cube(2,2)))
     }
 
     @Test
@@ -52,21 +52,22 @@ class SolverTest {
 
     @Test
     fun `containsWord finds legal words`() {
-        assertTrue(b.containsWord("abcfedghi"))
-        assertTrue(b.containsWord("adghebcfi"))
-        assertTrue(b.containsWord("abedghifc"))
-        assertTrue(b.containsWord("aeifc"))
+        assertTrue(b.containsWord("abcfedghqu"))
+        assertTrue(b.containsWord("adghebcfqu"))
+        assertTrue(b.containsWord("abedghqufc"))
+        assertTrue(b.containsWord("aequfc"))
 
-        assertFalse(b.containsWord("abcdefghi"), "cubes are not adjacent")
-        assertFalse(b.containsWord("aeifce"), "cubes may not be reused")
+        assertFalse(b.containsWord("abcdefghqu"), "cubes are not adjacent")
+        assertFalse(b.containsWord("aequfce"), "cubes may not be reused")
+        assertFalse(b.containsWord("aeq"), "whole cube must be used")
     }
 
     @Test
     fun `findValidWords finds all valid words from dict`() {
-        val dict = listOf("abc", "def", "ghi", "abcdefghi", "abcfedghi", "adghebcfi", "abedghifc", "aeifce")
+        val dict = listOf("abc", "def", "ghqu", "abcdefghqu", "abcfedghqu", "adghebcfqu", "abedghqufc", "aequfce")
         val solver = Solver(dict)
         val answer = solver.findValidWords(b)
-        val expected = listOf("abc", "def", "ghi", "abcfedghi", "abedghifc", "adghebcfi")
+        val expected = listOf("abc", "def", "ghqu", "abcfedghqu", "abedghqufc", "adghebcfqu")
         assertEquals(expected.size, answer.size)
         assertTrue(answer.containsAll(expected))
     }

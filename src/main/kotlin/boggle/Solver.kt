@@ -6,7 +6,7 @@ import kotlin.math.absoluteValue
  * Represents a square Boggle board and provides a function for checking if a word is on the board.
  * Currently assumes board is square but does not validate that.
  */
-class Board(val letters: List<List<Char>>) {
+class Board(val letters: List<List<String>>) {
     /**
      * Length of one side of the board (e.g. 4 for a 4x4 board.)
      */
@@ -18,9 +18,9 @@ class Board(val letters: List<List<Char>>) {
     val allCubes = (0 until size).flatMap { i -> (0 until size).map { j -> Cube(i, j) } }
 
     /**
-     * Returns the letter on the board at a given Cube.
+     * Returns the "letter" on the board at a given Cube. (A "letter" may actually be a multi-character string like "qu".)
      */
-    fun letterAt(c: Cube) = letters[c.x][c.y]
+    fun letterAt(c: Cube): String = letters[c.x][c.y]
 
     /**
      * Returns true if the board contains word `w` according to the rules of Boggle.
@@ -35,8 +35,8 @@ class Board(val letters: List<List<Char>>) {
         else -> cubes.any {
             // null current means we are starting a new word and have to pick the first cube
             (current == null || it.isAdj(current)) &&
-                    this.letterAt(it).equals(w.first(), true) &&
-                    this.wordFrom(w.drop(1), it, cubes - it)
+                    w.startsWith(this.letterAt(it), true) &&
+                    this.wordFrom(w.drop(this.letterAt(it).length), it, cubes - it)
         }
     }
 }
