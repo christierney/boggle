@@ -69,11 +69,19 @@ class SolverTest {
 
     @Test
     fun `findValidWords finds all valid words from dict`() {
-        val dict = listOf("abc", "def", "ghqu", "abcdefghqu", "abcfedghqu", "adghebcfqu", "abedghqufc", "aequfce")
+        val dict = listOf("ab", "abc", "def", "ghqu", "abcdefghqu", "abcfedghqu", "adghebcfqu", "abedghqufc", "aequfce")
         val solver = Solver(dict)
         val answer = solver.findValidWords(b)
         val expected = listOf("abc", "def", "ghqu", "abcfedghqu", "abedghqufc", "adghebcfqu")
         assertEquals(expected.size, answer.size)
         assertTrue(answer.containsAll(expected))
+    }
+
+    @Test
+    fun `empty board finds empty list of words`() {
+        val dict = listOf("abc", "def", "ghqu", "abcdefghqu", "abcfedghqu", "adghebcfqu", "abedghqufc", "aequfce")
+        val solver = Solver(dict)
+        val emptyBoard = Board(emptyList())
+        assertEquals(emptyList<String>(), solver.findValidWords(emptyBoard))
     }
 }

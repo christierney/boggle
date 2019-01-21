@@ -23,6 +23,7 @@ data class Board(val letters: List<List<String>>) {
             })
         }
     }
+
     /**
      * Length of one side of the board (e.g. 4 for a 4x4 board.)
      */
@@ -73,13 +74,17 @@ data class Cube(val x: Int, val y: Int) {
                     (o.y - this.y).absoluteValue <= 1
 }
 
-class Solver(val dict: Collection<String>) {
+/**
+ * Construct a solver with a word list and a minimum valid word length (default = 3).
+ */
+class Solver(val dict: Collection<String>, val minLength: Int = 3) {
 
     /**
      * Find all valid words in `board` that exist in wordlist `dict`.
      */
     fun findValidWords(board: Board): Collection<String> =
             dict.filter { word ->
-                board.containsWord(word)
+                word.length >= minLength &&
+                        board.containsWord(word)
             }
 }
