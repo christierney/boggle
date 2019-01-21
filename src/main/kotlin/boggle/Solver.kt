@@ -1,12 +1,28 @@
 package boggle
 
 import kotlin.math.absoluteValue
+import kotlin.math.sqrt
 
 /**
  * Represents a square Boggle board and provides a function for checking if a word is on the board.
  * Currently assumes board is square but does not validate that.
  */
-class Board(val letters: List<List<String>>) {
+data class Board(val letters: List<List<String>>) {
+    companion object {
+        /**
+         * Create a board from a String of letters like "abcdefghi".
+         * Length of string should be a square number (currently not validated).
+         * "q" or "Q" will automatically be converted to "qu" in accordance with Boggle rules.
+         */
+        fun of(letters: String): Board {
+            val n = sqrt(letters.length.toDouble()).toInt()
+            return Board(letters.chunked(n).map { row ->
+                row.chunked(1).map { s ->
+                    if (s.equals("q", true)) "qu" else s
+                }
+            })
+        }
+    }
     /**
      * Length of one side of the board (e.g. 4 for a 4x4 board.)
      */

@@ -10,6 +10,11 @@ class SolverTest {
     ))
 
     @Test
+    fun `of produces a Board from a String`() {
+        assertEquals(b, Board.of("abcdefghq"))
+    }
+
+    @Test
     fun `allCubes returns full board`() {
         assertEquals(listOf(
                 Cube(0, 0), Cube(0, 1), Cube(0, 2),
