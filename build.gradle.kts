@@ -13,6 +13,7 @@ dependencies {
     compile("io.ktor:ktor-server-netty:1.1.1")
     compile("io.ktor:ktor-gson:1.1.1")
     compile("ch.qos.logback:logback-classic:1.2.3")
+    compile("io.ktor:ktor-html-builder:1.1.1")
 
     testCompile(kotlin("test"))
     testCompile(kotlin("test-junit"))
