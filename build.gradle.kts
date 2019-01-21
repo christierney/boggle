@@ -1,6 +1,7 @@
 plugins {
     kotlin("jvm") version "1.3.11"
     application
+    id("com.github.johnrengelman.shadow") version "4.0.4"
 }
 
 repositories {
@@ -22,3 +23,6 @@ dependencies {
 application {
     mainClassName = "boggle.ServerKt"
 }
+
+// Heroku requires a "stage" task
+task("stage").dependsOn("build")

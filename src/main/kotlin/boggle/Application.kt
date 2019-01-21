@@ -13,6 +13,7 @@ import io.ktor.response.respondText
 import io.ktor.routing.get
 import io.ktor.routing.routing
 import java.io.File
+import java.util.ArrayList
 
 fun Application.main() {
     val words = loadWords()
@@ -50,5 +51,9 @@ fun Application.mainModule(solver: Solver) {
     }
 }
 
-private fun loadWords(): Collection<String> =
-    File(ClassLoader.getSystemResource("words").file).readLines()
+private fun loadWords(): Collection<String> {
+    // see FileReadWrite#File.readLines
+    val result = ArrayList<String>()
+    ClassLoader.getSystemResourceAsStream("words").bufferedReader().forEachLine { result.add(it) }
+    return result
+}

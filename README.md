@@ -4,9 +4,11 @@ A web application that finds solutions for the game [Boggle](https://en.wikipedi
 
 ## Running Locally
 
-Run with `./gradlew run`.
+Run with `./gradlew run`
 
 Open [http://localhost:8080/ping]() and you should get a "pong".
+
+Alternative port: `PORT=XXXX ./gradlew run`
 
 [http://localhost:8080/board]() is the solver interface; it will return a list of valid words.
 
@@ -23,6 +25,18 @@ The application currently does not validate input and simply assumes that `lette
 converted to "qu" before solving.
 
 Output is a JSON list of valid words.
+
+## Deployment
+
+`./gradlew stage` will create an uber-jar in `build/libs`. This can be run with:
+
+    java -jar build/libs/boggle.jar
+
+This is suitable for deploying to Heroku. The application has been deployed at
+[https://shrouded-island-28213.herokuapp.com/]()
+
+(This is a free Heroku application, so it may be asleep and a first request might take longer than
+usual to return.)
 
 ## Design
 
